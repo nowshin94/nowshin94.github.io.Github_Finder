@@ -1,4 +1,3 @@
-//Define the UI
 let searchBtn = document.querySelector('#searchBtn');
 let searchUser = document.querySelector('#searchUser');
 let ui = new UI();
@@ -6,20 +5,21 @@ let ui = new UI();
 searchBtn.addEventListener('click', (e) => {
   let userText = searchUser.value;
   if (userText != '') {
-    // alert(userText);
-    //Fetch API
+    // Fetch API
     fetch(`https://api.github.com/users/${userText}`)
       .then((result) => result.json())
       .then((data) => {
-        // console.log(data);
+        //console.log(data);
         if (data.message == 'Not Found') {
-            ui.showAlert("User Not Fount","alert alert-danger");
+          // Show Alert
+          ui.showAlert('User not Found!', 'alert alert-danger');
         } else {
+          //Show Profile
           ui.showProfile(data);
         }
       });
   } else {
-    //clear profile
-    ui.clearProfile()
+    // Clear Profile
+    ui.clearProfile();
   }
 });
